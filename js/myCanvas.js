@@ -35,45 +35,54 @@ if(canvas.obj.getContext){
 
 
 
-// function calulate(){
-// 	var len = image.imageDate.length;
-// 	var cols = 100, rows = 100;
+function calulate(){
+	var len = image.imageDate.length;
+	var cols = 100, rows = 100;
 
-// 	var s_width = parseInt(image.w / cols),
-// 		s_height = parseInt(image.h / rows);
+	var s_width = parseInt(image.w / cols),
+		s_height = parseInt(image.h / rows);
 
-// 	var pos = 0;
-// 	var pos_x, pos_y;
-// 	var data = image.imageDate.data;
+	var pos = 0;
+	var par_x, par_y;
+	var data = image.imageDate.data;
 
-// 	for(var i = 1; i <= cols; i++){
-// 		for(var j = 1; j <= cols; j++){
-// 			pos = [(j * s_height - 1) * image.w  + (i * s_height - 1)] *4;  // pos = (j - 1) * w + (i - 1);
+	for(var i = 1; i <= cols; i++){
+		for(var j = 1; j <= rows; j++){
+			pos = (j * s_height * image.w + i * s_width) * 4;
 
-// 			if(data[pos] > 250){
-// 				var particle = {
-// 					x: image.x + i * s_width + (Math.random() - 0.5) * 20,
-// 					y: image.y + j * s_height + (Math.random() - 0.5) * 20,
-// 					fillStyle: '#006eff'
-// 				}
+			if(data[pos + 3] > 100){
+				var particle = {
+					x: image.x + i * s_width + (Math.random() - 0.5) * 20,
+					y: image.y + j * s_height + (Math.random() - 0.5) * 20
+				}
 
-// 				particles.push(particle);
-// 			}
-// 		}
-// 	}
-// }
+				if(data[pos + 1] < 175 && data[pos + 2] < 10){
+					particle.fillStyle = 'ffa900';
+				}else if(data[pos + 1] < 75 && data[pos + 1] > 50){
+					particle.fillStyle = 'ff4085';
+				}else if(data[pos + 1] > 220 && data[pos + 1] > 190){
+					particle.fillStyle = '00cfff';
+				}else if(data[pos + 1] < 195 && data[pos + 1] > 175){
+					particle.fillStyle = '9abc1c';
+				}
+
+				particles.push(particle);
+			}
+		}
+	}
+}
 
 
-// function draw(){
-// 	canvas.ctx.clearRect(0, 0, canvas.width, canvas.height);
+function draw(){
+	canvas.ctx.clearRect(0, 0, canvas.w, canvas.h);
 
-// 	var len = particles.length, curr_particle = null;
+	var len = particles.length, curr_particle = null;
 
-// 	for(var i = 0; i < len; i++){
-// 		curr_particle = particles[i];
+	for(var i = 0; i < len; i++){
+		curr_particle = particles[i];
 
-// 		canvas.ctx.fillStyle = curr_particle.fillStyle;
+		canvas.ctx.fillStyle = curr_particle.fillStyle;
 
-// 		canvas.ctx.fillRect(curr_particle.x, curr_particle.y, 1, 1);
-// 	}
-// }
+		canvas.ctx.fillRect(curr_particle.x, curr_particle.y, 1, 1);
+	}
+}
