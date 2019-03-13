@@ -44,7 +44,7 @@ function calulate(){
 
 	var pos = 0;
 	var par_x, par_y;
-	var data = image.imageDate.data;
+	var data = image.imageData.data;
 
 	for(var i = 1; i <= cols; i++){
 		for(var j = 1; j <= rows; j++){
