@@ -36,7 +36,7 @@ if(canvas.obj.getContext){
 
 
 function calulate(){
-	var len = image.imageDate.length;
+	// var len = image.imageDate.length;
 	var cols = 100, rows = 100;
 
 	var s_width = parseInt(image.w / cols),
